@@ -1,0 +1,40 @@
+
+body {
+
+	width: 90%;
+
+}
+
+.navegacion{
+
+	display: flex;
+	justify-content: flex-end;
+
+}
+
+.formulario {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+}
+
+.principal {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 500px;
+}
+
+.contenedor{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-;
+}

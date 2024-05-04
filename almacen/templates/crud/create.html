@@ -1,0 +1,164 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    
+<form method="post" class="" novalidate>
+      {% csrf_token %}
+     <div class="form-row container_input principal">
+         {{ form.non_field_errors }}
+         {% for hidden_field in form.hidden_fields %}
+         {{ hidden_field.errors }}
+         {{ hidden_field }}
+         {% endfor %}
+     
+       <!--{{ form.as_p }}-->
+         {% if view == 'create_barra' %}
+             {{ form.as_p }}
+         {% endif %}
+         
+         {% if view == 'calculo_barra' %}
+
+             <p>
+             	 <label for ="id_Barra">{{form.Barra.label.upper}}</label>
+             	 <br>
+                 {{ form.Barra }}   
+             </p>
+             <br>
+             
+              <p>
+             	 <label for ="id_Cod_barra">{{form.Cod_barra.label.upper}}</label>
+             	 <br>
+                 {{ form.Cod_barra }}   
+             </p>
+             <br>
+
+
+             <p>
+             	 <label for ="id_Fecha_certificado">{{form.Fecha_certificado.label.upper}}</label>
+                 {{ form.Fecha_certificado|attr:"type:date" }}   
+             </p>
+             <br>
+
+             
+
+              <p>
+             	 <label for ="id_Ley">{{form.Ley.label.upper}}</label>
+             	 <br>
+                 {{ form.Ley }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Peso_final">{{form.Peso_final.label.upper}}</label>
+             	 <br>
+                 {{ form.Peso_final }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fecha_fixing">{{form.Fecha_fixing.label.upper}}</label>
+             	 <br>
+                 {{ form.Fecha_fixing|attr:"type:date" }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fixing">{{form.Fixing.label.upper}}</label>
+             	 <br>
+                 {{ form.Fixing }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fecha_tdc">{{form.Fecha_tdc.label.upper}}</label>
+             	 <br>
+                 {{ form.Fecha_tdc|attr:"type:date" }}   
+             </p>
+             <br>
+             <p>
+             	 <label for ="id_TDC">{{form.TDC.label.upper}}</label>
+             	 <br>
+                 {{ form.TDC }}   
+             </p>
+             <br>
+
+
+         {% endif %}
+
+         {% if view == 'calculo_testigo' %}
+
+             <p>
+             	 <label for ="id_Barra">{{form.Barra.label.upper}}</label>
+             	 <br>
+                 {{ form.Barra }}   
+             </p>
+             <br>
+             
+              <p>
+             	 <label for ="id_Cod_barra">{{form.Cod_barra.label.upper}}</label>
+             	 <br>
+                 {{ form.Cod_barra }}   
+             </p>
+             <br>
+
+
+             <p>
+             	 <label for ="id_Fecha_certificado">{{form.Fecha_certificado.label.upper}}</label>
+                 {{ form.Fecha_certificado|attr:"type:date" }}   
+             </p>
+             <br>
+
+             
+
+              <p>
+             	 <label for ="id_Ley">{{form.Ley.label.upper}}</label>
+             	 <br>
+                 {{ form.Ley }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Peso_final">{{form.Peso_final.label.upper}}</label>
+             	 <br>
+                 {{ form.Peso_final }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fecha_fixing">{{form.Fecha_fixing.label.upper}}</label>
+             	 <br>
+                 {{ form.Fecha_fixing|attr:"type:date" }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fixing">{{form.Fixing.label.upper}}</label>
+             	 <br>
+                 {{ form.Fixing }}   
+             </p>
+             <br>
+
+              <p>
+             	 <label for ="id_Fecha_tdc">{{form.Fecha_tdc.label.upper}}</label>
+             	 <br>
+                 {{ form.Fecha_tdc|attr:"type:date" }}   
+             </p>
+             <br>
+             <p>
+             	 <label for ="id_TDC">{{form.TDC.label.upper}}</label>
+             	 <br>
+                 {{ form.TDC }}   
+             </p>
+             <br>
+
+
+         {% endif %}
+       <input type="submit" value="Guardar">
+     </div>
+
+</form>
+{% endblock %}
+
+
+

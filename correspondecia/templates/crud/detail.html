@@ -1,0 +1,90 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ 
+
+{{ form.non_field_errors }}
+
+
+
+{% if quien == 'recepcion'%}
+        <ul>
+                <table border="1" class="table table-dark tabla">
+                  <thead class="table thead-dark table-bordered">
+                     <tr>
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <th>Correlativo</th>
+                          <th>Nº Oficio</th>
+                          <th>Direccion</th>
+                          <th>Persona</th>
+                          <th>Telefono</th>
+                          <th>Fecha</th>
+                          <!--<th>Creador</th>-->
+                     </tr>
+                  </thead>
+                  <tbody>
+
+                        <tr>
+                            <td>{{ object.mensajero }}</td>
+                            <td>{{ object.asunto }}</td>
+                            <td>{{ object.correlativo }}</td>
+                            <td>{{ object.rif_ci }}</td><!--cambiado por numero de oficio-->
+                            <td>{{ object.oficina }}</td>
+                            <td>{{ object.persona }}</td>
+                            <td>{{ object.telefono }}</td>
+                            <td>{{ object.created|date:"d/m/Y" }}</td>
+                            <!--<td>{{ object.creator }} ->ROL: {{ user.groups.all.0.name }}</td>-->
+                        </tr>
+                    
+
+                  </tbody>
+                </table>
+
+        </ul>
+{% else %}
+<!-- oficio-->
+        <ul>
+            <table border="1" class="table table-dark table-bordered">
+                  <thead class="table thead-dark">
+                     <tr>
+                          <th>Usuario</th>
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <th>Enviado</th>
+                          <th>Entregado</th>
+                          <th>Visto</th>
+                          <th>Urgente</th>
+                          <th>Devolver</th>
+                          <th>Observaciones</th>
+                          <th>Fecha</th>
+                          <th>Finalizado</th>
+                          <!--<th>Creador</th>-->
+                     </tr>
+                  </thead>
+                  <tbody class="table table-dark">
+                        <tr>
+                        <td>{{ object.usuario }}</td>
+                        <td>{{ object.recepcion.mensajero }}</td>
+                        <td>{{ object.recepcion.asunto }}</td>
+                        <td>{{ object.enviado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ object.entregado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ object.visto|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ object.urgente|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ object.devolver|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ object.observacion }}</td>
+                        <td>{{ object.created|date:"d/m/Y" }}</td>
+                        <td>{{ object.ejecutado |yesno:"Si,No,¿Quizas?" }}</td>
+                        <!--<td>{{ object.creator }}</td>-->
+                        </tr>
+                
+                  </tbody>
+                </table> 
+               
+               <!-- <img src= "{{BASE_DIR}}/media/{{url_view}}" width="200" height="150"/>-->
+                <!--<a href="{{BASE_DIR}}/media/{{url_view}}">foto</a>-->
+    </ul>
+{% endif %}  
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="table table-striped tabla"> 
+    <h2>{{ context_object_name }}</h2>
+
+<!--{{perms.user}}-->
+
+
+
+
+{% if "taquilla" in user.groups.all.0.name %}
+
+        <!--lista oficio-->
+                <table border="1" class="table table-hover table-dark">
+                  <thead class="thead-dark">
+                     <tr>
+                          <th>Usuario</th>
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <th>Observacion</th>
+                          <th>Accion</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in fields %}
+                        <tr>
+                        <td>{{ item.usuario }}</td>
+                        <td>{{ item.recepcion.mensajero }}</td>
+                        <td>{{ item.recepcion.asunto }}</td>
+                        <td>{{ item.observacion }}</td>
+                         
+                        <td width="150px">
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Ver">
+                        <a href="{{BASE_DIR}}/media/{{item.recepcion.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></a>
+                        </button>
+                        
+                        <!--<a href="{{BASE_DIR}}/media/{{item.recepcion.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></a>-->
+    
+                        <!--<a class="btn btn-danger" href="{% url urls.0 item.pk %}"><i class="material-icons">delete_forever</i></a>-->
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Info">
+                        <a href="{% url urls.1 item.pk %}" class="btn btn-info"><span class="mdi mdi-information-outline iconos"></span></a>
+                        </button>
+                        
+                        <!--<a href="{% url urls.1 item.pk %}" class="btn btn-info"><span class="mdi mdi-information-outline iconos"></span></a>-->
+
+                        </td>
+
+
+                         <!--<a href="{% url urls.1 item.pk %}" class="btn btn-info"><i class="material-icons">info_outline</i></a></td>-->
+
+                       <!-- <li><a href="{{ item.get_url_delete }}">borrar</a></li>
+                        <li><a href="{{ item.get_url_editar }}">editar</a></li>
+                        <li><a href="{{ item.get_url_detalle }}">detalles</a></li>-->
+
+
+                         </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table> 
+
+
+
+        {% endif %}
+
+
+</div>
+
+
+
+    
+
+
+    
+{% endblock %}

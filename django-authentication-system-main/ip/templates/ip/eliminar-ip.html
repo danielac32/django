@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+         <form method="post" class="d-grid list">{% csrf_token %}
+
+
+            <p class="alert alert-danger">Seguro que desea eliminar : "{{ object }}"?</p>
+
+
+            <input type="submit" value="Confirmar" class="btn btn-danger">
+         </form>
+ 
+
+{% endblock %}

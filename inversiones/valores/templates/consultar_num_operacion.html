@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+ <form method="post" class="" novalidate enctype="multipart/form-data">
+
+          
+
+
+              {% csrf_token %}
+            
+
+
+               
+            <div class="form-row container_input principal">
+              
+              {{ form.non_field_errors }}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+              {% endfor %}
+				 <div class="block">
+	                  <div>
+	                    <label for ="id_Cod_barra">{{form.num_operacion.label}}</label><br>
+	                    {{form.num_operacion}}                    
+	                  </div>
+
+	             </div>
+	                  
+	             
+			<div class="block">
+                <button class="btn btn-success" type="submit">Consultar</button>
+              </div>
+            </div>
+            </form>
+
+
+
+
+
+ 
+{% endblock %}

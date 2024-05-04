@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<div class="principal">
+	<form method="post" class="" novalidate>
+		{% csrf_token %}
+		{{ form.as_p }}
+		 <input type="submit" value="Guardar">
+	</form>
+</div>
+{% endblock %}

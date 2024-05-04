@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+                {% endif %}
+            {% endfor %}
+        </ul>
+{% endif %}
+
+ 
+
+<table class="table table-hover list">
+     <thead class="thead-dark">
+         <tr>
+              <th>Fecha de registro</th>
+              <th>Codigo</th>
+              <th>Nombre</th>
+              <th>Categoria</th>
+              <th>Stock</th>
+              <th>Observacion</th>
+              <th>Accion</th>
+         </tr>
+      </thead>
+      <tbody>
+            {% for item in fields %}
+                <tr>
+                    <td>{{ item.created|date:"d/m/Y" }}</td>
+                    <td>{{ item.codigo }}</td>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.categoria }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td>{{ item.observacion }}</td>
+                    <td>
+                    
+
+                    <a href="{% url urls.0 item.pk %}" class="btn btn-danger"><span class="mdi mdi-delete-outline"></span></a>
+                    <a href="{% url urls.1 item.pk %}" class="btn btn-primary"><span class="mdi mdi-marker"></span></a>
+
+                    {% if "admin" in user.groups.all.0.name %}  <!---si es usuario admin-->
+                            
+                            <a href="{% url urls.2 item.pk %}" class="btn btn-success"><span class="mdi mdi-briefcase-plus"></span></a>     
+                            <a href="{% url urls.3 item.pk %}" class="btn btn-info"><span class="mdi mdi-briefcase-minus"></span></a> 
+                    {% endif %}
+
+                    <!--<a href="{% url urls.0 item.pk %}" class="btn btn-danger"><span class="mdi mdi-delete-outline"></span></a>
+                    <a href="{% url urls.1 item.pk %}" class="btn btn-primary"><span class="mdi mdi-marker"></span></a>
+                    <a href="{% url urls.2 item.pk %}" class="btn btn-success"><span class="mdi mdi-briefcase-plus"></span></a>     
+                    <a href="{% url urls.3 item.pk %}" class="btn btn-info"><span class="mdi mdi-briefcase-minus"></span></a> 
+                -->
+                    <!--<a href="eliminar/{{item.pk}}">editar</a>
+                    <a href="eliminar/{{item.pk}}">(+) stock</a>     
+                    <a href="eliminar/{{item.pk}}">(-) stock</a>   -->   
+                    </td>
+                </tr> 
+            {% endfor %}
+      </tbody>        
+</table>
+
+<script>
+    //Referencia HTML
+    const body = document.querySelector('body');
+    body.classList = 'container';
+
+</script>
+
+{% endblock %}

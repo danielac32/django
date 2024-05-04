@@ -1,0 +1,255 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="table table-striped tabla"> 
+    <h2>{{ context_object_name }}</h2>
+
+<!--{{perms.user}}-->
+
+ {% if messages %}
+
+    {% for message in messages %}
+
+    <h2 class="alert alert-danger">{{ message }}</h2>
+
+    {% endfor %}
+
+{% endif %}
+
+
+
+
+{% if "taquilla" in user.groups.all.0.name %}
+  
+ 
+
+
+
+        {% if quien == 'recepcion'%}
+                <table border="1" class="table table-hover table-dark">
+                  <thead>
+                     <tr>
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <th>Correlativo</th>
+                          <!--<th>Nº Oficio</th>-->
+                          <th>Direccion</th>
+                          <th>Fecha</th>
+                          <th>Accion</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in fields %}
+                        <tr>
+                            <td>{{ item.mensajero }}</td>
+                            <td>{{ item.asunto }}</td>
+                            <td>{{ item.correlativo }}</td>
+                            <!--<td>{{ item.rif_ci }}</td>-->
+                            <td>{{ item.oficina }}</td>
+                            <td>{{ item.created|date:"d/m/Y" }}</td>
+
+                            <td width="300px">
+
+                            <button type="button" class="" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                            <a class="btn btn-danger" href="{% url urls.0 item.pk %}"><span class="mdi mdi-delete-outline iconos"></span></a>
+                            </button>
+
+                            <!--<a class="btn btn-danger" href="{% url urls.0 item.pk %}"><span class="mdi mdi-delete-outline iconos"></span></a>-->
+
+                            <button type="button" data-toggle="tooltip" data-placement="top" title="Ver">
+                            <a href="{{BASE_DIR}}/media/{{item.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></span></a></button> 
+
+
+                            <!--<a href="{{BASE_DIR}}/media/{{item.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></span></a>-->
+
+                            <button type="button" data-toggle="tooltip" data-placement="top" title="Info">
+                            <a class="btn btn-info" href="{% url urls.1 item.pk %}"><span class="mdi mdi-information-outline iconos"></span>
+                            </a>
+                            </button>
+
+
+                            <!--<a class="btn btn-info" href="{% url urls.1 item.pk %}"><span class="mdi mdi-information-outline iconos"></span>
+                            </a>-->
+                        </td>
+                        </tr>
+                    {% endfor %}
+                 
+
+
+
+                  </tbody>
+                </table>
+        {% else %}
+
+        
+        <!--lista oficio-->
+                <table border="1" class="table table-hover table-dark">
+                  <thead class="thead-dark">
+                     <tr>
+                          <th>Usuario</th>
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <!--<th>Enviado</th>
+                          <th>Entregado</th>
+                          <th>Visto</th>
+                          <th>Urgente</th>
+                          <th>Devuelto</th>-->
+                          <th>Fecha</th>
+                          <th>Finalizado</th>
+                          <th>Accion</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in fields %}
+                        <tr>
+                        <td>{{ item.usuario }}</td>
+                        <td>{{ item.recepcion.mensajero }}</td>
+                        <td>{{ item.recepcion.asunto }}</td>
+                        <td>{{ item.created|date:"d/m/Y" }}</td>
+                        <td>{{ item.ejecutado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <!--<td>{{ item.enviado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.entregado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.visto|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.urgente|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.devolver|yesno:"Si,No,¿Quizas?" }}</td>-->
+ 
+                       <td width="300px">
+                        {% if item.entregado == False %}
+                            <button type="button" class="" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                            <a class="btn btn-danger" href="{% url urls.0 item.pk %}"><span class="mdi mdi-delete-outline iconos"></span></a>
+                            </button>
+                            <!--<a href="{% url urls.0 item.pk %}" class="btn btn-danger"><span class="mdi mdi-delete-outline iconos"></span></a>-->
+                        {% endif %}
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Ver">
+                        <a href="{{BASE_DIR}}/media/{{item.recepcion.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></span></a></button> 
+                        <!--<a href="{{BASE_DIR}}/media/{{item.recepcion.imagen}}" class="btn btn-primary" ><span class="mdi mdi-book-open-page-variant-outline iconos"></span></a>-->
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Info">
+                        <a class="btn btn-info" href="{% url urls.1 item.pk %}"><span class="mdi mdi-information-outline iconos"></span>
+                        </a>
+                        </button>
+
+
+                        <!--<a href="{% url urls.1 item.pk %}" class="btn btn-info"><span class="mdi mdi-information-outline iconos"></span></a>-->
+                        </td>
+
+
+                         
+
+                       <!-- <li><a href="{{ item.get_url_delete }}">borrar</a></li>
+                        <li><a href="{{ item.get_url_editar }}">editar</a></li>
+                        <li><a href="{{ item.get_url_detalle }}">detalles</a></li>-->
+
+
+                         </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table> 
+        {% endif %}
+{% else %}
+<!---si es usuario-->
+    <ul class="">
+       
+        <table border="1" class="table table-hover table-dark">
+                  <thead">
+                     <tr>
+                          <!--<th>Usuario</th>-->
+                          <th>Remitente</th>
+                          <th>Asunto</th>
+                          <th>Fecha</th>
+                           <!--<th>Entregado</th>-->
+                          <th>Nº Oficio</th>
+                          <th>Visto</th>
+                          <th>Urgente</th>
+                           <!--<th>Devuelto</th>-->
+                          <th>Accion</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in fields %}
+                        <tr>
+                        <!--<td>{{ item.usuario }}</td>-->
+                        <td>{{ item.recepcion.mensajero }}</td>
+                        <td>{{ item.recepcion.asunto }}</td>
+
+                        <td>{{ item.created|date:"d/m/Y" }}</td>
+
+                        <td>{{ item.recepcion.rif_ci }}</td>
+                        <td>{{ item.visto|yesno:"Si,No,¿Quizas?" }}</td>
+
+                        <td>{{ item.urgente|yesno:"Si,No,¿Quizas?" }}</td>
+
+                        
+                        <!-- <td>{{ item.enviado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.entregado|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.visto|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.urgente|yesno:"Si,No,¿Quizas?" }}</td>
+                        <td>{{ item.devolver|yesno:"Si,No,¿Quizas?" }}</td>-->
+
+                       <td width="300px">
+                        <!--<a class="btn btn-danger" href="{% url urls.0 item.pk %}"><i class="material-icons">delete_forever</i></a>   ---> 
+                       
+
+                       <!--- <a class="btn btn-info" href="{% url urls.1 item.pk %}"><i class="material-icons">info_outline</i></a> --->
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Descargar">
+                        <a href="
+                        /descargar/{{item.pk}}/
+                        " class="btn btn-{% if item.visto %}success{% else %}primary{% endif %}" target="_blank"><span class="mdi mdi-arrow-collapse-down iconos"></span></a>
+                        </button>
+
+                        <!--<a href="
+                        /descargar/{{item.pk}}/
+                        " class="btn btn-{% if item.visto %}success{% else %}primary{% endif %}" target="_blank"><span class="mdi mdi-arrow-collapse-down iconos"></span></a>-->
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Comentar">
+                        <a class="btn btn-warning" href="{% url urls.3 item.pk %}"><span class="mdi mdi-chat-processing-outline iconos"></span></a> 
+                        </button>
+                      
+                        <!--<a class="btn btn-warning" href="{% url urls.3 item.pk %}"><span class="mdi mdi-chat-processing-outline iconos"></span></a>-->         
+                        
+                        <!--<a class="btn btn-success" href="/descargar/{{item.pk}}/"><span class="mdi mdi-arrow-collapse-down iconos"></span></a>--> 
+
+                        <button type="button" data-toggle="tooltip" data-placement="top" title="Devolver">
+                        <a class="btn btn-danger" href="/devolver/{{item.pk}}/"><span class="mdi mdi-swap-horizontal-bold iconos"></span></a> 
+                        </button> 
+
+
+                        {% if item.ejecutado == False %}
+                           <button type="button" data-toggle="tooltip" data-placement="top" title="Finalizar tarea">
+                           <a class="btn btn-info" href="/ejecutado/{{item.pk}}/"><span class="mdi mdi-note-check iconos"></span></a> 
+                        </button> 
+                        {% endif %}
+
+                        
+
+
+                        <!--<a class="btn btn-danger" href="/devolver/{{item.pk}}/"><span class="mdi mdi-swap-horizontal-bold iconos"></span></a>--> 
+                    </td>
+
+
+            <!--<li><a href="{{ item.get_url_delete }}">borrar</a></li>
+            <li><a href="{{ item.get_url_editar }}">editar</a></li>
+            <li><a href="{{ item.get_url_detalle }}">detalles</a></li>-->
+
+
+                         </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table> 
+    </ul>
+{% endif %}
+
+
+</div>
+
+
+
+    
+
+
+    
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+
+<div class="principal">
+
+
+
+{% if "taquilla" in user.groups.all.0.name %}
+   <a href="crear-recepcion">Nueva Correspondencia</a> <br>
+   <a href="crear-oficio">Asignar</a> <br>
+   <a href="lista-oficio">Consultar Oficio</a> <br>
+   <a href="lista-recepcion">Consultar Recibido</a> <br>
+   <a href="devuelto">Devuelto</a> <br>
+   <a href="reporte">Reporte</a> <br>
+{% else %}
+ <a href="lista-oficio">Bandeja de Entrada</a> <br>
+{%endif%}
+
+
+
+</div>
+
+
+
+{% endblock %}

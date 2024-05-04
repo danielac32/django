@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+                {% endif %}
+            {% endfor %}
+        </ul>
+{% endif %}
+
+ 
+
+<table class="table">
+     <thead class="thead-dark">
+         <tr>
+              <th>Usuario</th>
+              <th>Direccion</th>
+              <th>Observacion</th>
+              <th>Tlf</th>
+              <th>Estatus</th>
+              <th>Analista</th>
+         </tr>
+      </thead>
+      <tbody>
+            {% for item in fields %}
+                <tr>
+                    <td>{{ item.usuario }}</td>
+                    <td>{{ item.direccion }}</td>
+                    <td>{{ item.observacion }}</td>
+                    <td>{{ item.tlf }}</td>
+                    <td>{{ item.estatus }}</td>
+                    <td>{{ item.analista }}</td>
+                    <td>
+                      
+                    <a href="" class="btn btn-danger">ELIMINAR</a>
+                    <a href="" class="btn btn-danger">ACTUALIZAR</a>
+                    </td>
+                </tr> 
+            {% endfor %}
+      </tbody>        
+</table>
+
+{% endblock %}

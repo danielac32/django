@@ -1,0 +1,59 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+
+ {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+                {% endif %}
+            {% endfor %}
+        </ul>
+ {% endif %}
+
+
+<table class="table table-hover list">
+     <thead class="thead-dark">
+         <tr>
+              <th>Fecha</th>
+              <th>Num Operacion</th>
+              <th>Derechante</th>
+              <th>Estatus</th>
+              <th>Complejo</th>
+              <th>Empresa</th>
+              <th>Cod Barra</th>
+              <th>Peso Bruto</th>
+              <th>Num Guia</th>
+              <th>Num Caja</th>
+         </tr>
+      </thead>
+      <tbody>
+            {% for item in form %}
+                <tr>
+                            <td>{{ item.created|date:"d/m/Y" }}</td>
+                            <td>{{ item.num_operacion }}</td>
+                            <td>{{ item.Derechante }}</td>
+                            <td>{{ item.Estatus }}</td>
+                            <td>{{ item.Complejo }}</td>
+                            <td>{{ item.Empresa}}</td>
+                            <td>{{ item.Cod_barra }}</td>
+                            <td>{{ item.peso_bruto }}</td>
+                            <td>{{ item.Num_guia_onafin }}</td>
+                            <td>{{ item.num_caja}}</td>
+
+
+                            <td>
+                            <a href="{% url urls.0 item.pk %}" class="btn btn-danger"><span class="mdi mdi-delete-outline"></span></a>
+                            <a href="{% url urls.1 item.pk %}" class="btn btn-primary"><span class="mdi mdi-marker"></span></a>
+                            <a href="{% url urls.2 item.pk %}" class="btn btn-success"><span class="mdi mdi-information-outline iconos"></span></a>     
+                            </td>
+                </tr> 
+            {% endfor %}
+      </tbody>        
+</table>
+
+    
+{% endblock %}

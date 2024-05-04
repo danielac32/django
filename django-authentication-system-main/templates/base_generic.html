@@ -1,0 +1,41 @@
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}ONT{% endblock %}</title>
+    {% block stylesheet %}{% endblock %}
+</head>
+<body class="contain">
+    <div class="contenedor mt-4">
+
+            <div class="logo">
+                <a href="{% url 'success' %}">
+                    <img src="{% static 'admin/img/logo.png' %}" />
+                </a>
+            </div>
+
+
+            {% if user.is_authenticated %}
+                {% block header %}
+                {% endblock %}
+     
+                {% block content %}
+
+                {% endblock %}
+            {% else %}
+              <p>Inicie sesion.</p>
+            {% endif %}
+    </div>        
+</body>
+</html>
+<style>
+.logo{
+    text-align: center;
+}
+</style>

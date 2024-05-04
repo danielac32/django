@@ -1,0 +1,128 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+
+
+ {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+                {% endif %}
+            {% endfor %}
+        </ul>
+ {% endif %}
+
+
+
+<table class="table table-hover list">
+     <thead class="thead-dark">
+         <tr>
+              <th>Fecha</th>
+              <th>Num Operacion</th>
+              <th>Derechante</th>
+              <th>Estatus</th>
+              <th>Complejo</th>
+              <th>Empresa</th>
+              <th>Cod Barra</th>
+              <th>Peso Bruto</th>
+              <th>Num Guia</th>
+              <th>Num Caja</th>
+
+         </tr>
+      </thead>
+      <tbody>
+            {% for item in form %}
+                <tr>
+                            <td>{{ item.created|date:"d/m/Y" }}</td>
+                            <td>{{ item.num_operacion }}</td>
+                            <td>{{ item.Derechante }}</td>
+                            <td>{{ item.Estatus }}</td>
+                            <td>{{ item.Complejo }}</td>
+                            <td>{{ item.Empresa}}</td>
+                            <td>{{ item.Cod_barra }}</td>
+                            <td>{{ item.peso_bruto }}</td>
+                            <td>{{ item.Num_guia_onafin }}</td>
+                            <td>{{ item.num_caja}}</td>
+
+                </tr> 
+            {% endfor %}
+      </tbody>        
+</table>
+<br>
+
+
+
+<table class="table table-hover list">
+     <thead class="thead-dark">
+         <tr>
+             {% if calculo1  %}
+
+                     <th>Fecha Certificado</th>
+                     <th>Peso Final</th>
+                     <th>Fecha Fixing</th>  
+                     <th>Fixing</th>  
+                     <th>Fecha TDC</th>
+                     <th>TDC</th>
+                     <th>BS</th>
+                     <th>USD</th>
+              {%endif%}
+         </tr>
+    </thead>
+    <tbody>
+         <tr>
+            {% if calculo1  %}
+                {% for item2 in calculo1 %}
+                     <td>{{ item2.Fecha_certificado }}</td>
+                     <td>{{ item2.Peso_final }}</td>
+                     <td>{{ item2.Fecha_fixing }}</td>  
+                     <td>{{ item2.Fixing }}</td>  
+                     <td>{{ item2.Fecha_tdc }}</td>
+                     <td>{{ item2.TDC }}</td>
+                     <td>{{ item2.BS }}</td>
+                     <td>{{ item2.USD }}</td>
+                {% endfor %}
+           {%endif%}
+         </tr> 
+    </tbody>        
+</table>
+    
+
+<br>
+<table class="table table-hover list">
+     <thead class="thead-dark">
+         <tr>
+
+
+                 {% if calculo2  %}
+                       <th>Peso Final</th>
+                       <th>Fecha Fixing</th>   
+                       <th>Fixing</th>
+                       <th>Fecha TDC</th> 
+                       <th>TDC</th> 
+                       <th>BS</th>
+                       <th>USD</th>
+
+                 {%endif%}
+
+         </tr>
+    </thead>
+    <tbody>
+         <tr>
+
+             {% if calculo2  %}
+                   {% for item3 in calculo2 %}
+                         <td>{{ item3.Peso_final }}</td>
+                         <td>{{ item3.Fecha_fixing }}</td>   
+                         <td>{{ item3.Fixing }}</td>
+                         <td>{{ item3.Fecha_tdc }}</td> 
+                         <td>{{ item3.TDC }}</td> 
+                         <td>{{ item3.BS }}</td>
+                         <td>{{ item3.USD }}</td>
+                   {% endfor %}
+             {%endif%}
+         </tr> 
+    </tbody>        
+</table>
+{% endblock %}

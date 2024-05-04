@@ -1,0 +1,111 @@
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Sistema de Correspondencia{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% block stylesheet %}{% endblock %}
+    
+     <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        
+    {% load static %}
+    <link href="{% static 'admin/=css/style1.css' %}" rel="stylesheet">
+
+
+
+    <link href="{% static 'admin/css/materialdesignicons.min.css' %}" media="all" rel="stylesheet" type="text/css" />
+
+    <script src="{% static 'admin/js/main.js' %}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+    />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap"
+    rel="stylesheet"
+    />
+
+    <!-- animaciones para el formulario -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'boostrap/css/bootstrap.min.css' %}">
+    
+</head>
+<body>
+
+    <header>
+        <div class="container-logo">
+            <img src="{% static 'admin/img/ONTsin letras.png' %}" />
+        </div>
+        <h1>OFICINA NACIONAL DEL TESORO</h1>
+    </header>
+
+
+    {% block header %}
+    {% endblock %}
+
+        <aside class="navbar navbar-dark bg-primary">
+            <ul>
+            {% if user.is_authenticated %}
+                <li class="navbar-brand">Usuario: {{ user.get_username.upper }}</li>
+                <li class="navbar-brand"></li>               
+            {% else %}
+                <li><a class="navbar-brand" href="{% url 'login'%}?next={{request.path}}">Incio de Sesiòn</a></li>
+            {% endif %} 
+            <li><a class="navbar-brand" href="{% url 'index'%}">Inicio</a></li>
+            <li><a class="navbar-brand" href="{% url 'logout'%}?next={{request.path}}">Cerrar Sesiòn</a></li>
+            </ul>
+        </aside>
+ 
+
+    {% block breadcrumb %}
+    <div>
+    </div>
+    {% endblock %}
+    {% block content %}
+    <div>
+    </div>
+    {% endblock %}
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+     $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<div class="">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+            	{% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post" class="d-grid list" novalidate onsubmit="return checkForm(this)">
+           
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Guardar" class="btn btn-primary"> 
+
+        	
+        </form>
+</div>
+
+<script>
+    function checkForm() {
+        form.myButton.disabled = true;
+        return true;
+    }
+</script>
+
+{% endblock %}

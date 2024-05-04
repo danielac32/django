@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+
+
+        {% load static %}
+
+        <link href="{% static 'admin/css/style1.css' %}" rel="stylesheet">
+
+        <script src="{% static 'admin/js/main.js' %}"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap"
+            rel="stylesheet"
+        />
+
+    </head>
+
+   <!-- {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Inicie Sesion para ver esta pagina.</p>
+        {% endif %}
+    {% endif %}-->
+
+
+    
+    <body>
+        <header>
+            <div class="container-logo">
+                <img src="{% static 'admin/img/ONTsin letras.png' %}" />
+            </div>
+            <h1>SISTEMA DE CORRESPONDENCIA</h1>
+        </header>
+
+        <form method="post" action="{% url 'login' %}" class="login">
+             {% csrf_token %}
+            <div class="container">
+{% load widget_tweaks %}
+
+                   {% if form.errors %}
+                <p>Su Usuario y contraseña con valores incorrector. Por favor intente de nuevo.</p>
+                {% endif %}
+
+                 {% if next %}
+                 {% if user.is_authenticated %}
+                 <p>Tu cuenta no tiene acceso a esta pagina.</p>
+                 {% else %}
+                 <!--<p>Inicie Sesion para ver esta pagina.</p>-->
+                {% endif %}
+                {% endif %}
+
+                    <!--<td>{{ form.username.label_tag }}</td>-->
+
+
+                   <!-- <td>{{ form.username }}</td>-->
+                   {% render_field  form.username placeholder='Usuario' %}
+
+                    <!--<td>{{ form.password.label_tag }}</td>-->
+                    <!--<<td>{{ form.password }}</td>-->
+                     {% render_field form.password placeholder='Contraseña' %}
+
+                    <button type="submit">INICIAR SESION</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+               
+
+            </div>
+
+                {# Assumes you setup the password_reset view in your URLconf #}
+        <p class="text-muted"><a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a></p>
+
+    </div>
+
+        </form>
+
+        <!--{# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}">¿Perdiste tu contraseña?</a></p>-->
+                     
+            
+                     
+    </body>
+</html>

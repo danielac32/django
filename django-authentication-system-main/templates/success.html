@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+
+<br>
+<a href="{% url 'logout' %}">LogOut</a>
+<br>
+<a href="{% url 'ip' %}">ip</a>
+<br>
+<a href="{% url 'reporte' %}">reporte</a>
+{% endblock %}

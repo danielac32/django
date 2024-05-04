@@ -1,0 +1,69 @@
+{% extends "base_generic.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<!--
+
+<div>
+	<table border="1" class="table">
+		<thead class="table table-hover table-dark">
+		   <tr>
+		        <th>Usuario</th>
+		        <th>Remitente</th>
+		        <th>Asunto</th>
+		        <th>Fecha</th>
+		        <th>Enviado</th>
+		        <th>Entregado</th>
+		        <th>Visto</th>
+		        <th>Urgente</th>
+		        <th>Devolver</th>
+		   </tr>
+		</thead>
+			<tbody class="table table-striped table-dark">
+		 
+			      <tr>
+			      <td>{{ object.usuario }}</td>
+			      <td>{{ object.recepcion.mensajero }}</td>
+			      <td>{{ object.recepcion.asunto }}</td>
+			      <td>{{ object.recepcion.fecha }}</td>
+			      <td>{{ object.enviado|yesno:"Si,No,¿Quizas?" }}</td>
+		        <td>{{ object.entregado|yesno:"Si,No,¿Quizas?" }}</td>
+		        <td>{{ object.visto|yesno:"Si,No,¿Quizas?" }}</td>
+		        <td>{{ object.urgente|yesno:"Si,No,¿Quizas?" }}</td>
+		        <td>{{ object.devolver|yesno:"Si,No,¿Quizas?" }}</td>
+			      </tr>
+			</tbody>
+		</table> 
+</div>
+   
+ <br>-->
+
+ hghhg
+	<div class="container">
+  <form method="post">
+    {% csrf_token %}
+
+    {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {% render_field field class="form-control" placeholder=field.label %}
+
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span> Save
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

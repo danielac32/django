@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+
+<div class="principal">
+
+
+
+{% if error == 'entregado' %}
+         <h2 class="alert alert-danger">Error, El Archivo ya ha sido entregado!</h2>
+{% elif error == 'eliminado' %}
+         <!---<h2 class="alert alert-danger">El Archivo ha sido eliminado!</h2>-->
+         <form method="post">{% csrf_token %}
+
+
+            <p class="alert alert-danger">Seguro que desea eliminar : "{{ object }}"?</p>
+
+
+            <input type="submit" value="Confirmar">
+         </form>
+{% endif %}
+</div>
+
+{% endblock %}

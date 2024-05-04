@@ -1,0 +1,92 @@
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body class="text-center">
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}<br>
+    {% endfor %}
+{% endif %}
+<form action="{% url 'signup' %}" method="POST" class="form-signin">
+    <h1>crear usuario</h1>
+    {% csrf_token %}
+    <input type="text" class="form-control" name="username" placeholder="Username" required style="height: 30px; width: 200px"><br>
+    <input type="text" class="form-control" name="firstname" placeholder="First Name" required style="height: 30px; width: 200px"><br>
+    <input type="text" class="form-control" name="lastname" placeholder="Last Name" required style="height: 30px; width: 200px"><br>
+    <input type="email" class="form-control" name="email" placeholder="Email" required style="height: 30px; width: 200px"><br>
+    <input type="password" class="form-control" name="password1" placeholder="Password" required style="height: 30px; width: 200px"><br>
+    <input type="password" class="form-control" name="password2" placeholder="Password confirm" required
+           style="height: 30px; width: 200px"><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+</body>
+</html>
+
+
+<style>
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>

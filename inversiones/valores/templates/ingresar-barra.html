@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<div class="principal">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %} 
+                      <script>alert("{{ message }}")</script> 
+            	{% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post" class="" novalidate>
+        	{% csrf_token %}
+        	{{ form.as_p }}
+        	 <input type="submit" value="Guardar">
+        </form>
+</div>
+{% endblock %}

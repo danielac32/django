@@ -1,0 +1,133 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    
+            <form method="post" class="" novalidate enctype="multipart/form-data">
+
+          
+
+
+              {% csrf_token %}
+            
+              {{ form.non_field_errors }}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+              {% endfor %}
+               
+            <div class="form-row container_input principal">
+
+{% if name == 'oficio' %}<!--Asignar(TAQUILLA)-->
+
+
+              <div class="">
+                <p>
+                    <label for ="id_usuario">{{form.usuario.label.upper}}</label><br><br>
+                    {{form.usuario}}                    
+                  </p><br>
+
+                  <p>
+                    <label for ="id_recepcion">{{form.recepcion.label.upper}}</label><br><br>
+                    {{form.recepcion}}
+                  </p>
+                  
+              </div>
+                  
+              <div class="col">
+                <p>
+                  <label for ="id_categoria">{{form.categoria.label.upper}}</label><br>
+                  {{form.categoria}}
+                  </p>
+
+                  <p>
+                    <label for ="id_urgente">{{form.urgente.label.upper}}</label><br>
+                    {{form.urgente}}
+                  </p>
+                 {{form.direccion}}
+              </div>
+
+                  
+{% else %}<!--Recepcion(TAQUILLA)-->
+               
+                              
+<!---
+              <button type="button" onclick="myFunction()">Try it</button>
+
+              <script>
+              function myFunction() {
+               var e = document.getElementById("id_oficina");
+                var value = e.options[e.selectedIndex].text;
+                document.write(value);
+              }
+              </script>-->
+
+
+
+              <div class="">
+                <p class="block">
+                   <label for ="id_imagen" style="color: black">MENSAJERO</label><br>
+                    {{form.persona}}
+                  </p>
+                  <p class="block">
+                   <label for ="id_imagen" style="color: black">N° TELEFONICO</label><br>
+                    {{form.telefono}}
+                  </p>
+
+                 <p>
+                    <label for ="id_mensajero" style="color: black">REMITENTE</label><br>
+                    {{form.mensajero}}
+                  </p>
+
+                 
+                   
+                    <p class="block">
+                   <label for ="id_imagen" style="color: black">ADJUNTAR</label><br>
+                    {{form.imagen}}
+                  </p>
+              
+              </div>
+
+              <div class="">
+                <!-- <p>
+                    <label for ="id_correlativo">{{form.correlativo.label}}</label><br>
+                    {{form.correlativo}}
+                  </p>-->
+
+                  <p>
+                    <!--<label for ="id_rif_ci">RIF/CI</label><br>-->
+                    <label for ="id_rif_ci" style="color: black">Nº OFICIO</label><br>
+                    {{form.rif_ci}}
+                  </p>
+
+                  <p class="block">
+                    <label for ="id_oficina" style="color: black"><DATA>DIRECCION</DATA></label><br>
+                    {{form.oficina}}
+                  </p>
+
+                    <p>
+                    <label for ="id_asunto" style="color: black">{{form.asunto.label.upper}}</label><br>
+                    {{form.asunto}}
+                  </p>
+
+              </div>
+ 
+              
+{% endif %}
+              
+              <div class="block">
+                <button class="btn btn-success" type="submit">Guardar</button>
+              </div>
+            </div>
+            </form>
+
+
+
+
+
+ 
+{% endblock %}
+
+
+
